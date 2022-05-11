@@ -73,47 +73,47 @@ class Frame(object):
 	  2B    2B    2B    2B    1B     len B       2B
 	"""
 	MAX_SIZE =		256			# Arbitrary max frame size
-	SYNC =			0xaaaa		# 2 sync bytes preamble "1010101010101010"
+	SYNC =			0xaa55		# 2 sync bytes preamble "1010101010101010"
 	ADDR_DEFAULT =	0x0000		# Broadcast address
 	ADDR_HOST =		0x0100		# Default host address
 	ADDR_DEV =		0x0001		# Default device address
 	# Commands
-	CMD_DSC =	0x0000		# Computer discovers devices
-	CMD_DSC_R =	0x0080		# Inverter advertises its serial number
-	CMD_REG =	0x0001		# Address registration
-	CMD_REG_R =	0x0081		# Acknowledge the assigned address
-	CMD_RMV =	0x0002		# Disconnect
-	CMD_RMV_R =	0x0082		# Disconnect ACK
-	CMD_RCT =	0x0003		# Reconnect all devices
-	CMD_RST =	0x0004		# Reset communications
-	CMD_STL =	0x0100		# Status frame structure request
-	CMD_STL_R =	0x0180		# Status frame structure reply
-	CMD_PRL =	0x0101		# Parameter frame structure request
-	CMD_PRL_R =	0x0181		# Parameter frame structure reply
-	CMD_STA =	0x0102		# Status request
-	CMD_STA_R =	0x0182		# Status reply
-	CMD_VER =	0x0103		# Version string request
-	CMD_VER_R =	0x0183		# Version string reply
-	CMD_PRM =	0x0104		# Parameter request
-	CMD_PRM_R =	0x0184		# Parameters reply
-	CMD_SP0 =	0x0200		# Set Vpv-Start
-	CMD_SP0_R =	0x0280		# Set Vpv-Start ACK
-	CMD_SP1 =	0x0201		# Set T-Start
-	CMD_SP1_R =	0x0281		# Set T-Start ACK
-	CMD_SP2 =	0x0204		# Set Vac-Min
-	CMD_SP2_R =	0x0284		# Set Vac-Min ACK
-	CMD_SP3 =	0x0205		# Set Vac-Max
-	CMD_SP3_R =	0x0285		# Set Vac-Max ACK
-	CMD_SP4 =	0x0206		# Set Fac-Max
-	CMD_SP4_R =	0x0286		# Set Fac-Max ACK
-	CMD_SP5 =	0x0207		# Set Fac-Min
-	CMD_SP5_R =	0x0287		# Set Fac-Min ACK
-	CMD_SP6 =	0x0208		# Set DZac-Max
-	CMD_SP6_R =	0x0288		# Set DZac-Max ACK
-	CMD_SP7 =	0x0209		# Set DZac
-	CMD_SP7_R =	0x0289		# Set DZac ACK
-	CMD_ZRO =	0x0300		# Reset inverter E-Total and h-Total
-	CMD_ZRO_R =	0x0380		# Reset inverter E-Total and h-Total ACK
+	CMD_DSC =	0x1000		# Computer discovers devices
+	CMD_DSC_R =	0x1080		# Inverter advertises its serial number
+	CMD_REG =	0x1001		# Address registration
+	CMD_REG_R =	0x1081		# Acknowledge the assigned address
+	CMD_RMV =	0x1002		# Disconnect
+	CMD_RMV_R =	0x1082		# Disconnect ACK
+	CMD_RCT =	0x1003		# Reconnect all devices
+	CMD_RST =	0x1004		# Reset communications
+	CMD_STL =	0x1100		# Status frame structure request
+	CMD_STL_R =	0x1180		# Status frame structure reply
+	CMD_PRL =	0x1101		# Parameter frame structure request
+	CMD_PRL_R =	0x1181		# Parameter frame structure reply
+	CMD_STA =	0x1102		# Status request
+	CMD_STA_R =	0x1182		# Status reply
+	CMD_VER =	0x1103		# Version string request
+	CMD_VER_R =	0x1183		# Version string reply
+	CMD_PRM =	0x1104		# Parameter request
+	CMD_PRM_R =	0x1184		# Parameters reply
+	CMD_SP0 =	0x1200		# Set Vpv-Start
+	CMD_SP0_R =	0x1280		# Set Vpv-Start ACK
+	CMD_SP1 =	0x1201		# Set T-Start
+	CMD_SP1_R =	0x1281		# Set T-Start ACK
+	CMD_SP2 =	0x1204		# Set Vac-Min
+	CMD_SP2_R =	0x1284		# Set Vac-Min ACK
+	CMD_SP3 =	0x1205		# Set Vac-Max
+	CMD_SP3_R =	0x1285		# Set Vac-Max ACK
+	CMD_SP4 =	0x1206		# Set Fac-Max
+	CMD_SP4_R =	0x1286		# Set Fac-Max ACK
+	CMD_SP5 =	0x1207		# Set Fac-Min
+	CMD_SP5_R =	0x1287		# Set Fac-Min ACK
+	CMD_SP6 =	0x1208		# Set DZac-Max
+	CMD_SP6_R =	0x1288		# Set DZac-Max ACK
+	CMD_SP7 =	0x1209		# Set DZac
+	CMD_SP7_R =	0x1289		# Set DZac ACK
+	CMD_ZRO =	0x1300		# Reset inverter E-Total and h-Total
+	CMD_ZRO_R =	0x1380		# Reset inverter E-Total and h-Total ACK
 
 	def __init__(self, cmd, payload='', dst=ADDR_DEFAULT, src=ADDR_DEFAULT):
 		assert(type(src) == int)
@@ -179,9 +179,9 @@ class Device:
 			'Zac-Max':		('\x48',	1),		# Maximum operational grid impedance
 			'DZac':			('\x49',	1),		# Allowable Delta Zac of operation
 			}
-	MODE = {0:'Wait', 1:'Normal', 2:'Fault', 3:'Permenant Fault'}
+	MODE = {0:'Wait', 1:'Normal', 2:'Fault', 3:'Permanent Fault'}
 	ERROR = {		# The 2 error bytes are bit fields, e.g. ERROR[16] = 0x0100
-			 0: ('The GFCI detection circucit is abnormal', 'GFCI ckt fails'),
+			 0: ('The GFCI detection circuit is abnormal', 'GFCI ckt fails'),
 			 1: ('The DC output sensor is abnormal', 'DC sensor fails'),
 			 2: ('The 2.5V reference inside is abnormal', 'Ref 2.5V fails'),
 			 3: ('Different measurements between Master and Slave for output DC current', 'DC inj. differs for M-S'),
@@ -193,13 +193,13 @@ class Device:
 			 9: ('No grid voltage detected', 'No-Utility'),
 			10: ('Ground current is too high', 'Ground I high'),
 			11: ('DC bus is not correct', 'DC BUS fails'),
-			12: ('Master and Slave firmware version is unmatch', 'M-S Version Fail'),
+			12: ('Master and Slave firmware version is unmatched', 'M-S Version Fail'),
 			13: ('Internal temperature is high', 'Temperature high'),
 			14: ('AutoTest failed', 'Test Fail'),
 			15: ('PV voltage is too high', 'Vpv high'),
 			16: ('Fan Lock', 'FanLock-Warning'),
 			17: ('The measured AC voltage is out of tolerable range', 'Vac out of range'),
-			18: ('Isulation resistance of PV to earth is too low', 'PV insulation low'),
+			18: ('Insulation resistance of PV to earth is too low', 'PV insulation low'),
 			19: ('The DC injection to grid is too high', 'DC injection high'),
 			20: ('Different measurements between Master and Slave for dl, Fac, Uac or Zac', 'Fac,Zac,Vac differs for M-S'),
 			21: ('Different measurements between Master and Slave for grid impedance', 'Zac differs for M-S'),
@@ -212,7 +212,7 @@ class Device:
 			28: ('The slave frequency is out of tolerable range', 'Fac-Slave out of range'),
 			29: ('The master frequency is out of tolerable range', 'Fac-Master out of range'),
 			30: ('EEPROM reading or writing error', 'EEPROM fails'),
-			31: ('Communication between microcontrollers fails', 'Comm fails between M-S'),
+			31: ('Communication between micro-controllers fails', 'Comm fails between M-S'),
 			}
 
 	def __init__(self, port, addr):
@@ -302,7 +302,7 @@ class Inverter(Device):
 		Registers an inverter for direct communication
 		Returns True if the inverter acknowledges registration
 		"""
-		self.send(Frame(Frame.CMD_REG, sn + struct.pack('!H', addr)))
+		self.send(Frame(Frame.CMD_REG, sn + struct.pack('>B', 0x01)))
 		frm = self.receive()
 		return True if frm is not None and frm.cmd == Frame.CMD_REG_R else False
 

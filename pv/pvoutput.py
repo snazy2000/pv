@@ -37,7 +37,7 @@ class Connection():
 		"""
 		Uploads end of day output information
 		"""
-		path = '/service/r1/addoutput.jsp'
+		path = '/service/r2/addoutput.jsp'
 		params = {
 				'd': date,
 				'g': generated
@@ -74,7 +74,7 @@ class Connection():
 		"""
 		Uploads live output data
 		"""
-		path = '/service/r1/addstatus.jsp'
+		path = '/service/r2/addstatus.jsp'
 		params = {
 				'd': date,
 				't': time,
@@ -87,7 +87,7 @@ class Connection():
 		if power_imp:
 			params['v4'] = power_imp
 		if cumulative:
-			params['c1'] = 1
+			params['c1'] = 1  
 		params = urllib.urlencode(params)
 
 		response = self.make_request('POST', path, params)
@@ -101,7 +101,7 @@ class Connection():
 		"""
 		Retrieves status information
 		"""
-		path = '/service/r1/getstatus.jsp'
+		path = '/service/r2/getstatus.jsp'
 		params = {}
 		if date:
 			params['d'] = date

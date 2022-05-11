@@ -1,21 +1,15 @@
 pv - a Python-based PV inverter monitoring library
 
-28 Jan 11
+11/05/22
 
 Introduction
 ============
 pv provides a simple Python API to monitor and control some photovoltaic
 inverters via serial connection.
 
-pv was developed specifically for the Carbon Management Solutions CMS-2000
-inverter, and is expected to work for the Solar Energy Australia Orion inverter
-since they are essentially the same device with a different badge. The
-communication protocol was based on examining the data exchange between the
-inverter device and the official Pro Control 2.0.0.0 monitoring software for the
-Orion inverter, and the SunEzy Control Software.
+The original library did not work with Trannergy Inverters so I have changed the values in order for it to work with my SGN1300TL.
 
-For more information, see http://pv.codeplex.com/
-
+This has only been tested with Read commands so use write commands at own risk!
 
 Getting Started
 ===============
@@ -33,7 +27,7 @@ of different fields in each packet for readibility:
 	pv.debug_color()
 
 
-Interfacing with CMS-2000
+Interfacing with SGN1300TL
 -------------------------
 Communication with the solar inverter is over a serial interface. First, we need
 to open the serial port to which the inverter is connected:
